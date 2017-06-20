@@ -23,3 +23,51 @@ describe('Binary Functions', function() {
         expect(mul(5, 5)).toEqual(25);
     });
 });
+
+// Write a function that takes an argument and returns a function
+// that returns that argument
+
+var identityf = function(arg) {
+    return function() {
+        return arg;
+    }
+}
+
+describe('Identity Function', function() {
+    it ('should take an argument and return a function that returns that argument', function() {
+        var fn = identityf(47);
+        expect(fn()).toEqual(47);
+    });
+});
+
+// Write a function, addf, that adds from two invocations
+
+var addf = function(first) {
+    return function(second) {
+        return first + second;
+    }
+}
+
+describe('Double Invocation', function() {
+    it ('should correctly add numbers from two invocations', function() {
+        expect(addf(3)(4)).toEqual(7);
+    });
+});
+
+// Write a function, liftf, that takes a binary function, and makes it callable
+// with two invocations
+
+var liftf = function(binary) {
+    return function(first) {
+        return function(second) {
+            return binary(first, second);
+        }
+    }
+}
+
+describe('Make binary functions callable with two invocations', function() {
+    it ('should correctly make `add()` callable with two invocations', function() {
+        var addf = liftf(add);
+        expect(addf(3)(4)).toEqual(7); 
+    });
+});
