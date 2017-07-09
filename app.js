@@ -1,73 +1,86 @@
-// Write binary functions for add, sub, and mul
+(function (window, document) {
 
-var add = function(a, b) {
-    return a + b;
-};
+    'use strict';
 
-var sub = function(a, b) {
-    return a - b;
-}
+    // Write binary functions for add, sub, and mul
 
-var mul = function(a, b) {
-    return a * b;
-}
+    var add = function (a, b) {
+        return a + b;
+    };
 
-describe('Binary Functions', function() {
-    it ('should add two numbers correctly', function() {
-        expect(add(4, 5)).toEqual(9);
+    var sub = function (a, b) {
+        return a - b;
+    };
+
+    var mul = function (a, b) {
+        return a * b;
+    };
+
+    describe('Binary Functions', function () {
+        it ('should add two numbers correctly', function () {
+            expect(add(4, 5)).toEqual(9);
+        });
+        it ('should subtract two numbers correctly', function () {
+            expect(sub(10, 5)).toEqual(5);
+        });
+        it ('should multiply two numbers correctly', function () {
+            expect(mul(5, 5)).toEqual(25);
+        });
     });
-    it ('should subtract two numbers correctly', function() {
-        expect(sub(10, 5)).toEqual(5);
+
+    // Write a function that takes an argument and returns a function
+    // that returns that argument
+
+    var identityf = function (arg) {
+        return function () {
+            return arg;
+        };
+    };
+
+    describe('Identity Function', function () {
+        it ('should take an argument and return a function that returns that argument', function () {
+            var fn = identityf(47);
+            expect(fn()).toEqual(47);
+        });
     });
-    it ('should multiply two numbers correctly', function() {
-        expect(mul(5, 5)).toEqual(25);
+
+    // Write a function, addf, that adds from two invocations
+
+    var addf = function (first) {
+        return function (second) {
+            return first + second;
+        };
+    };
+
+    describe('Double Invocation', function () {
+        it ('should correctly add numbers from two invocations', function () {
+            expect(addf(3)(4)).toEqual(7);
+        });
     });
-});
 
-// Write a function that takes an argument and returns a function
-// that returns that argument
+    // Write a function, liftf, that takes a binary function, and makes it callable
+    // with two invocations
 
-var identityf = function(arg) {
-    return function() {
-        return arg;
-    }
-}
+    var liftf = function (binary) {
+        return function (first) {
+            return function (second) {
+                return binary(first, second);
+            };
+        };
+    };
 
-describe('Identity Function', function() {
-    it ('should take an argument and return a function that returns that argument', function() {
-        var fn = identityf(47);
-        expect(fn()).toEqual(47);
+    describe('Make binary functions callable with two invocations', function () {
+        it ('should correctly make `add()` callable with two invocations', function () {
+            var addf = liftf(add);
+            expect(addf(3)(4)).toEqual(7); 
+        });
     });
-});
 
-// Write a function, addf, that adds from two invocations
+    // Write a function `curry` that takes a binary function and an argument, and returns
+    // a function that can take a second argument
 
-var addf = function(first) {
-    return function(second) {
-        return first + second;
-    }
-}
+    var curry = function () {
 
-describe('Double Invocation', function() {
-    it ('should correctly add numbers from two invocations', function() {
-        expect(addf(3)(4)).toEqual(7);
-    });
-});
+    };
 
-// Write a function, liftf, that takes a binary function, and makes it callable
-// with two invocations
-
-var liftf = function(binary) {
-    return function(first) {
-        return function(second) {
-            return binary(first, second);
-        }
-    }
-}
-
-describe('Make binary functions callable with two invocations', function() {
-    it ('should correctly make `add()` callable with two invocations', function() {
-        var addf = liftf(add);
-        expect(addf(3)(4)).toEqual(7); 
-    });
-});
+}(this, this.document));
