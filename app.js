@@ -53,3 +53,20 @@ methods.curry = function (binary, arg1) {
         return binary(arg1, arg2);
     };
 };
+
+// Without writing any new functions, show three ways to make an `inc` function that
+// takes an integer and returns it incremented by 1
+
+methods.inc1 = function (num) {
+    const add1 = methods.curry(methods.add, 1);
+    return add1(num);
+};
+
+methods.inc2 = function (num) {
+    const add1 = methods.liftf(methods.add);
+    return add1(1)(num);
+};
+
+methods.inc3 = function (num) {
+    return methods.addf(1)(num);
+};

@@ -43,3 +43,15 @@ describe('Curry Function', function () {
         expect(methods.curry(methods.mul, 5)(6), 30);
     });
 });
+
+describe('Multiple `inc` functions', function () {
+    it ('should correctly add 1 with inc1', function() {
+        expect(methods.inc1(5)).toEqual(6);
+    });
+    it ('should correctly add 1 with inc2', function() {
+        expect(methods.inc2(5)).toEqual(6);
+    });
+    it ('should correctly add 1 with inc3', function() {
+        expect(methods.inc3(5)).toEqual(6);
+    });
+});
