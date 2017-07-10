@@ -33,3 +33,13 @@ describe('Make binary functions callable with two invocations', function () {
         expect(addf(3)(4)).toEqual(7); 
     });
 });
+
+describe('Curry Function', function () {
+    it ('should correctly perform a curry with add()', function() {
+        const add3 = methods.curry(methods.add, 3);
+        expect(add3(4)).toEqual(7);
+    });
+    it ('should correctly perform a curry with mul', function () {
+        expect(methods.curry(methods.mul, 5)(6), 30);
+    });
+});

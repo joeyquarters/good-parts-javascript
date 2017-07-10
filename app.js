@@ -44,3 +44,12 @@ methods.liftf = function (binary) {
         };
     };
 };
+
+// Write a function `curry` that takes a binary function and an argument, and returns
+// a function that can take a second argument
+
+methods.curry = function (binary, arg1) {
+    return function (arg2) {
+        return binary(arg1, arg2);
+    };
+};
