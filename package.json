@@ -1,0 +1,25 @@
+{
+  "name": "good-parts-javascript",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Following along with Douglas Crockford's 'Good Parts' series",
+  "main": "app.js",
+  "scripts": {
+    "test": "node_modules/.bin/jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeyquarters/good-parts-javascript.git"
+  },
+  "keywords": [],
+  "author": "Joey Nichols",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeyquarters/good-parts-javascript/issues"
+  },
+  "homepage": "https://github.com/joeyquarters/good-parts-javascript#readme",
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "jasmine": "^2.6.0"
+  }
+}
