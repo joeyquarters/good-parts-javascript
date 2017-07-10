@@ -70,3 +70,32 @@ methods.inc2 = function (num) {
 methods.inc3 = function (num) {
     return methods.addf(1)(num);
 };
+
+// Write a function `twice` that takes a binary function and returns an unary function that
+// passes its argument to the binary function twice
+
+methods.twice = function (binary) {
+    return function (arg) {
+        return binary(arg, arg);
+    };
+};
+
+/**
+ * A function that reverses the arguments of a binary function
+ * @return {Function} A function whose arguments will be applied in reverse
+ */
+methods.reverse = function (binary) {
+    return function(arg1, arg2) {
+        return binary(arg2, arg1);
+    };
+};
+
+/**
+ * Takes two unary functions and returns a unary function that calls them both.
+ * @return {Function}
+ */
+methods.composeu = function(unary1, unary2) {
+    return function(arg) {
+        return unary2(unary1(arg));
+    };
+};

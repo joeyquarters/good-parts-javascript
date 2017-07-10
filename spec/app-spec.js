@@ -55,3 +55,30 @@ describe('Multiple `inc` functions', function () {
         expect(methods.inc3(5)).toEqual(6);
     });
 });
+
+describe('Twice function', function () {
+    it ('should correctly create a `double` function', function () {
+        const doubl = methods.twice(methods.add);
+        expect(doubl(11)).toEqual(22);
+    });
+    it ('should correctly create a `square` function', function () {
+        const square = methods.twice(methods.mul);
+        expect(square(5)).toEqual(25);
+    });
+});
+
+describe('Reverse function', function () {
+    it('should correctly apply reversed arguments to the sub function', function () {
+        const bus = methods.reverse(methods.sub);
+        expect(bus(2, 3)).toEqual(1);
+    });
+});
+
+describe('Composeu function', function () {
+    it('should correctly calculate the result of two unary functions', function () {
+        const square = methods.twice(methods.mul);
+        const doubl = methods.twice(methods.add);
+        const doubleSquare = methods.composeu(doubl, square);
+        expect(doubleSquare(5)).toEqual(100);
+    });
+});
