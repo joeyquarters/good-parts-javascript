@@ -89,3 +89,12 @@ describe('Composeb function', function () {
         expect(addMul(2, 3, 7)).toEqual(35);
     });
 });
+
+describe('Limit function', function () {
+    it('should effectively limit the number of times a function can be called', function () {
+        const add_ltd = methods.limit(methods.add, 2);
+        expect(add_ltd(3, 4)).toEqual(7);
+        expect(add_ltd(4, 6)).toEqual(10);
+        expect(add_ltd(3, 4)).toEqual(undefined);
+    });
+});

@@ -109,3 +109,18 @@ methods.composeb = function (binary1, binary2) {
         return binary2(binary1(a,b), c);
     };
 };
+
+/**
+ * Allows a binary function to be called a limited number of times
+ * @return {Function} The function will return undefined when the limit is reached
+ */
+methods.limit = function (binary, limit) {
+    let called = 0;
+
+    return function (a,b) {
+        if (called < limit) {
+            called = called + 1;
+            return binary(a,b);
+        }
+    }
+};
