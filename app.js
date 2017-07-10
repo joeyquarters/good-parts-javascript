@@ -94,8 +94,18 @@ methods.reverse = function (binary) {
  * Takes two unary functions and returns a unary function that calls them both.
  * @return {Function}
  */
-methods.composeu = function(unary1, unary2) {
+methods.composeu = function (unary1, unary2) {
     return function(arg) {
         return unary2(unary1(arg));
+    };
+};
+
+/**
+ * Takes two binary functions and returns a function that calls them both
+ * @return {Function}
+ */
+methods.composeb = function (binary1, binary2) {
+    return function (a, b, c) {
+        return binary2(binary1(a,b), c);
     };
 };

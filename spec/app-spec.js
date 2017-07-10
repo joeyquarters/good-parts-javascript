@@ -82,3 +82,10 @@ describe('Composeu function', function () {
         expect(doubleSquare(5)).toEqual(100);
     });
 });
+
+describe('Composeb function', function () {
+    it('should correctly calculate the result of two binary functions', function () {
+        const addMul = methods.composeb(methods.add, methods.mul);
+        expect(addMul(2, 3, 7)).toEqual(35);
+    });
+});
