@@ -1,4 +1,4 @@
-/* eslint-env node, es6, jasmine */
+/* eslint-env jasmine */
 
 var methods = require('../app.js');
 
@@ -96,5 +96,14 @@ describe('Limit function', function () {
         expect(add_ltd(3, 4)).toEqual(7);
         expect(add_ltd(4, 6)).toEqual(10);
         expect(add_ltd(3, 4)).toEqual(undefined);
+    });
+});
+
+describe('From function', function () {
+    it('should correctly produce the generated numbers', function () {
+        const index = methods.from(1);
+        expect(index()).toEqual(1);
+        expect(index()).toEqual(2);
+        expect(index()).toEqual(3);
     });
 });

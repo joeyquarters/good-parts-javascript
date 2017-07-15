@@ -122,5 +122,18 @@ methods.limit = function (binary, limit) {
             called = called + 1;
             return binary(a,b);
         }
-    }
+    };
+};
+
+/**
+ * Produces a generator function that produces a series of values when called
+ * @param  {Int} num The number to start the generator from
+ * @return {Function}     A function that when called will produce the next integer in the series
+ */
+methods.from = function (start) {
+    return function () {
+        let next = start;
+        start += 1;
+        return next;
+    };
 };
