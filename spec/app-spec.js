@@ -142,4 +142,11 @@ describe('Element function', function () {
         expect(element()).toEqual(undefined);
         expect(element()).toEqual(undefined);
     });
+    it('should work without a generator function', function () {
+        const letters = ['a', 'b'];
+        const element = methods.element(letters);
+        expect(element()).toEqual('a');
+        expect(element()).toEqual('b');
+        expect(element()).toEqual(undefined);
+    });
 });

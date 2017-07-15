@@ -165,16 +165,20 @@ methods.fromTo = function (start, end) {
 };
 
 /**
- * Takes an array an a generator, then produces a generator that produces 
- * elements from the array
+ * Takes an array and an optional generator, 
+ * then produces a generator that produces elements from the array
  * @param  {Array}    arr       
  * @param  {Function} generator 
  * @return {Function}           
  */
-methods.element = function (arr, generator) {
+methods.element = function (arr, gen) {
+    if (gen === undefined) {
+        gen = methods.fromTo(0, arr.length);
+    }
+
     return function () {
-        let index = generator();
-        if (index && arr[index]) {
+        let index = gen();
+        if (index !== undefined) {
             return arr[index];
         }
     };
