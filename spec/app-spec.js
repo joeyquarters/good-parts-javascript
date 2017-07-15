@@ -107,3 +107,39 @@ describe('From function', function () {
         expect(index()).toEqual(3);
     });
 });
+
+describe('To function', function () {
+    it('should produce a limited generator', function () {
+        const index = methods.to(methods.from(1), 3);
+        expect(index()).toEqual(1);
+        expect(index()).toEqual(2);
+        expect(index()).toEqual(undefined);
+    });
+});
+
+describe('FromTo function', function () {
+    it('should produce a limited generator function', function () {
+        const generator = methods.fromTo(0, 3);
+        expect(generator()).toEqual(0);
+        expect(generator()).toEqual(1);
+        expect(generator()).toEqual(2);
+        expect(generator()).toEqual(undefined);
+    });
+}); 
+
+describe('Element function', function () {
+    it('should only produce elements while the generator function does', function () {
+        const letters = ['a', 'b', 'c', 'd', 'e'];
+        const element = methods.element(letters, methods.fromTo(1, 3));
+        expect(element()).toEqual('b');
+        expect(element()).toEqual('c');
+        expect(element()).toEqual(undefined);
+    });
+    it('should only produce elements that exist in the array', function () {
+        const letters = ['a', 'b', 'c', 'd', 'e'];
+        const element = methods.element(letters, methods.fromTo(4, 7));
+        expect(element()).toEqual('e');
+        expect(element()).toEqual(undefined);
+        expect(element()).toEqual(undefined);
+    });
+});

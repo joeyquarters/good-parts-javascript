@@ -137,3 +137,45 @@ methods.from = function (start) {
         return next;
     };
 };
+
+/**
+ * Takes a generator and an end value, and returns a generator that will produce
+ * numbers up to that limit
+ * @param  {Function} generator A generator function
+ * @param  {Int} limit          Limit of the generator function
+ * @return {Function}           A limited generator function
+ */
+methods.to = function (generator, limit) {
+    return function () {
+        let num = generator();
+        if (num < limit) {
+            return num;
+        }
+    };
+};
+
+/**
+ * Produces a generator that produces values in a range
+ * @param  {Int}      start  Start value
+ * @param  {Int}      end    End value
+ * @return {Function}        Generator function
+ */
+methods.fromTo = function (start, end) {
+    return methods.to(methods.from(start), end);
+};
+
+/**
+ * Takes an array an a generator, then produces a generator that produces 
+ * elements from the array
+ * @param  {Array}    arr       
+ * @param  {Function} generator 
+ * @return {Function}           
+ */
+methods.element = function (arr, generator) {
+    return function () {
+        let index = generator();
+        if (index && arr[index]) {
+            return arr[index];
+        }
+    };
+};
