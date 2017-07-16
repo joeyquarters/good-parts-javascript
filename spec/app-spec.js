@@ -225,3 +225,15 @@ describe('Counter function', function () {
         expect(up()).toEqual(10);
     });
 });
+
+describe('Revocable object & methods', function () {
+    const rev = methods.revocable(methods.add);
+    const add_rev = rev.invoke;
+    it('should have a correctly functioning invoke method', function () {
+        expect(add_rev(3, 4)).toEqual(7);
+    });
+    it('should have a correctly functioning revoke method', function () {
+        rev.revoke();
+        expect(add_rev(3, 4)).toEqual(undefined);
+    });
+});

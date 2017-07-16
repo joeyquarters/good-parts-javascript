@@ -278,3 +278,22 @@ methods.counter = function (counter) {
         }
     };
 };
+
+/**
+ * Takes in a binary function and returns an object with an invoke and revoke method
+ * @param  {Function} bin A binary function
+ * @return {Object}
+ */
+methods.revocable = function (bin) {
+    let callable = true;
+    return {
+        invoke: function (a, b) {
+            if (callable) {
+                return bin(a, b);
+            }
+        },
+        revoke: function () {
+            callable = false;
+        }
+    };
+};
