@@ -150,3 +150,14 @@ describe('Element function', function () {
         expect(element()).toEqual(undefined);
     });
 });
+
+describe('Collect function', function () {
+    it('should correctly collect results in the array', function () {
+        const arr = [];
+        const gen = methods.collect(methods.fromTo(0, 2), arr);
+        expect(gen()).toEqual(0);
+        expect(gen()).toEqual(1);
+        expect(gen()).toEqual(undefined);
+        expect(arr).toEqual([0, 1]);
+    });
+});

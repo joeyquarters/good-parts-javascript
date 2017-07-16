@@ -183,3 +183,20 @@ methods.element = function (arr, gen) {
         }
     };
 };
+
+/**
+ * Receives a generator and an array, then produces a function that will collect
+ * results in that array
+ * @param  {Function} gen A generator function
+ * @param  {Array}    arr An array to collect results in
+ * @return {Function}     Generator function to be called
+ */
+methods.collect = function (gen, arr) {
+    return function () {
+        let value = gen();
+        if (value !== undefined) {
+            arr.push(value);
+        }
+        return value;
+    };
+};
