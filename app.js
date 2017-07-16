@@ -260,3 +260,21 @@ methods.fibonaccif = function (a, b) {
         return next;
     };
 };
+
+/**
+ * Returns an object containing an up() and down() function to manipulate the counter
+ * @param {Number}   counter  The initial value of the counter
+ * @return {Object}
+ */
+methods.counter = function (counter) {
+    return {
+        up: function () {
+            counter += 1;
+            return counter;
+        },
+        down: function () {
+            counter -= 1;
+            return counter;
+        }
+    };
+};

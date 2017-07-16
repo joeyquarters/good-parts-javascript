@@ -213,3 +213,15 @@ describe('Fibonacci function', function () {
         expect(fib()).toEqual(5);
     });
 });
+
+describe('Counter function', function () {
+    it('should expose correctly functioning up and down methods', function () {
+        const object = methods.counter(10);
+        const up = object.up;
+        const down = object.down;
+        expect(up()).toEqual(11);
+        expect(down()).toEqual(10);
+        expect(down()).toEqual(9);
+        expect(up()).toEqual(10);
+    });
+});
