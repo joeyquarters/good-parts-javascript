@@ -178,3 +178,15 @@ describe('Filter function', function () {
         expect(gen()).toEqual(undefined);
     });
 });
+
+describe('Concat function', function () {
+    it('should correctly concatenate two generator sequences', function () {
+        const con = methods.concat(methods.fromTo(0, 3), methods.fromTo(0, 2));
+        expect(con()).toEqual(0);
+        expect(con()).toEqual(1);
+        expect(con()).toEqual(2);
+        expect(con()).toEqual(0);
+        expect(con()).toEqual(1);
+        expect(con()).toEqual(undefined);
+    });
+});

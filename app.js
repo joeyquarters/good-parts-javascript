@@ -217,3 +217,19 @@ methods.filter = function (gen, pred) {
         return value;
     };
 };
+
+/**
+ * Takes two generators and produce a generator that combines the sequences
+ * @param  {Function} gen1 
+ * @param  {Function} gen2
+ * @return {Function}     
+ */
+methods.concat = function (gen1, gen2) {
+    return function () {
+        let value = gen1();
+        if (value === undefined) {
+            value = gen2();
+        }
+        return value;
+    };
+};
