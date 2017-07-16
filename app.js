@@ -297,3 +297,49 @@ methods.revocable = function (bin) {
         }
     };
 };
+
+/**
+ * Takes a value and optional source string and returns an object
+ * @param  {*} value - Any value you want
+ * @param  {string} source - Optional source description
+ * @return {object}
+ */
+methods.m = function (value, source) {
+    return {
+        value: value,
+        source: (typeof source === 'string') 
+            ? source
+            : String(value)
+    };
+};
+
+/**
+ * Takes two m objects and returns an m object of both
+ * @param  {object} m1 
+ * @param  {object} m2
+ * @return {object}   
+ */
+methods.addm = function (m1, m2) {
+    return methods.m(
+        m1.value + m2.value,
+        `(${m1.source}+${m2.source})`
+    );
+};
+
+/**
+ * Takes a binary function and a string and returns a function that acts
+ * on m objects
+ * @param  {function} bin - binary function
+ * @param  {string} sign - string that signifies what the binary function does
+ * @return {function}
+ */
+methods.liftm = function (bin, sign) {
+    return function (a, b) {
+        a = (typeof a === 'object') ? a : methods.m(a);
+        b = (typeof b === 'object') ? b : methods.m(b);
+        return methods.m(
+            bin(a.value, b.value),
+            `${a.source}${sign}${b.source}`
+        );
+    };
+};

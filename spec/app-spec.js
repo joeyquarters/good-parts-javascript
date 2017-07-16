@@ -237,3 +237,27 @@ describe('Revocable object & methods', function () {
         expect(add_rev(3, 4)).toEqual(undefined);
     });
 });
+
+describe('Addm function', function () {
+    it('should add two m objects together correctly', function () {
+        const m1 = methods.m(3);
+        const m2 = methods.m(4);
+        const result = methods.addm(m1, m2);
+        const expected = {'value': 7, 'source': '(3+4)'};
+        expect(result).toEqual(expected);
+    });
+});
+
+describe('Liftm function', function () {
+    it('should correctly produce a function for journaling m object arithmetic', function () {
+        const mulm = methods.liftm(methods.mul, '*');
+        const result = mulm(methods.m(3), methods.m(4));
+        const expected = {'value': 12, 'source': '3*4'};
+        expect(result).toEqual(expected);
+    });
+    it('should produce a function that does not need to accept m objects', function () {
+        const mulm = methods.liftm(methods.mul, '*');
+        const expected = {'value': 12, 'source': '3*4'};
+        expect(mulm(3, 4)).toEqual(expected);
+    });
+});
