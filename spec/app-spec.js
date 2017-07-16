@@ -161,3 +161,20 @@ describe('Collect function', function () {
         expect(arr).toEqual([0, 1]);
     });
 });
+
+describe('Filter function', function () {
+    const thirds = (value) => (value % 3) === 0;
+
+    it('should have a functioning predicate', function () {
+        expect(thirds(0)).toEqual(true);
+        expect(thirds(3)).toEqual(true);
+        expect(thirds(5)).toEqual(false);
+    });
+
+    it('should only return value that meet the filter', function () {
+        const gen = methods.filter(methods.fromTo(0, 5), thirds);
+        expect(gen()).toEqual(0);
+        expect(gen()).toEqual(3);
+        expect(gen()).toEqual(undefined);
+    });
+});

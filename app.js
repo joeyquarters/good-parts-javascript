@@ -200,3 +200,20 @@ methods.collect = function (gen, arr) {
         return value;
     };
 };
+
+/**
+ * Receives a generator and a predicate function, then returns a generator
+ * function that only returns values approved by the predicate
+ * @param  {Function} gen   Generator function
+ * @param  {Function} pred  Predicate function
+ * @return {Function}       
+ */
+methods.filter = function (gen, pred) {
+    return function () {
+        let value;
+        do {
+            value = gen();
+        } while (value !== undefined && !pred(value));
+        return value;
+    };
+};
