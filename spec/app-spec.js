@@ -190,3 +190,26 @@ describe('Concat function', function () {
         expect(con()).toEqual(undefined);
     });
 });
+
+describe('Gensymf function', function () {
+    it('should generate unique symbols with the correct prefix', function () {
+        const geng = methods.gensymf('G');
+        const genh = methods.gensymf('H');
+        expect(geng()).toEqual('G1');
+        expect(geng()).toEqual('G2');
+        expect(genh()).toEqual('H1');
+        expect(genh()).toEqual('H2');
+    });
+});
+
+describe('Fibonacci function', function () {
+    it('should correctly generate a fibonacci sequence', function () {
+        const fib = methods.fibonaccif(0, 1);
+        expect(fib()).toEqual(0);
+        expect(fib()).toEqual(1);
+        expect(fib()).toEqual(1);
+        expect(fib()).toEqual(2);
+        expect(fib()).toEqual(3);
+        expect(fib()).toEqual(5);
+    });
+});

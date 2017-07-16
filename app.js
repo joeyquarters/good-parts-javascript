@@ -233,3 +233,30 @@ methods.concat = function (gen1, gen2) {
         return value;
     };
 };
+
+/**
+ * Creates a generator function that generates unique symbols with a prefix
+ * @param  {String}    prefix  The prefix of the generated unique symbol
+ * @return {Function}          Generator function that returns a symbol string
+ */
+methods.gensymf = function (prefix) {
+    const sym = methods.from(1);
+    return function () {
+        return prefix + sym();
+    };
+};
+
+/**
+ * Creates a generator function that returns the next number in the fibonacci sequence
+ * @param  {Int}      a  First seed number
+ * @param  {Int}      b  Second seed number
+ * @return {Function}
+ */
+methods.fibonaccif = function (a, b) {
+    return function () {
+        let next = a;
+        a = b;
+        b += next;
+        return next;
+    };
+};
