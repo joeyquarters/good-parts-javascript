@@ -1,5 +1,9 @@
 const methods = module.exports = {};
 
+methods.square = function (a) {
+    return a * a;
+};
+
 //
 // Binary Functions for add, subtract, and multiply
 //
@@ -342,4 +346,38 @@ methods.liftm = function (bin, sign) {
             `${a.source}${sign}${b.source}`
         );
     };
+};
+
+/**
+ * Takes an 'array expression', which consists of an array with a binary 
+ * function, then the arguements. It then evaluates that expression.
+ * @param  {Array}   exp  
+ * @return {Number}
+ */
+methods.exp = function (value) {
+    return Array.isArray(value)
+        ? value[0] (
+            methods.exp(value[1]),
+            methods.exp(value[2])
+        )
+        : value;
+};
+
+/**
+ * Adds from many invocations until it sees an empty invocation
+ * @param {num} num A number to add
+ * @return {Number}
+ */
+methods.addg = function (num) {
+    const more = function (next) {
+        if (next === undefined) {
+            return num;
+        }
+        num += next;
+        return more;
+    };
+
+    if (num !== undefined) {
+        return more;
+    }
 };

@@ -261,3 +261,33 @@ describe('Liftm function', function () {
         expect(mulm(3, 4)).toEqual(expected);
     });
 });
+
+describe('Exp function', function () {
+    it('should return non-array arguments', function () {
+        expect(methods.exp(45)).toEqual(45);
+    });
+    it('should correctly evaluate array expressions', function () {
+        expect(methods.exp([methods.mul, 5, 11])).toEqual(55);
+    });
+    it('should correctly evaluate nested array expressions', function () {
+        const nested = [
+            Math.sqrt,
+            [
+                methods.add,
+                [methods.square, 3],
+                [methods.square, 4]
+            ]
+        ];
+        expect(methods.exp(nested)).toEqual(5);
+    });
+});
+
+describe('Addg function', function () {
+    it('should correctly add until it sees an empty invocation', function () {
+        expect(methods.addg()).toEqual(undefined);
+        expect(methods.addg(2)()).toEqual(2);
+        expect(methods.addg(2)(7)()).toEqual(9);
+        expect(methods.addg(3)(0)(4)()).toEqual(7);
+        expect(methods.addg(1)(2)(4)(8)()).toEqual(15);
+    });
+});
