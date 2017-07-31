@@ -291,3 +291,12 @@ describe('Addg function', function () {
         expect(methods.addg(1)(2)(4)(8)()).toEqual(15);
     });
 });
+
+describe('Liftg function', function () {
+    it('should correctly take a binary function and apply it to many invocations', function () {
+        expect(methods.liftg(methods.mul)()).toEqual(undefined);
+        expect(methods.liftg(methods.mul)(3)()).toEqual(3);
+        expect(methods.liftg(methods.mul)(3)(0)(4)()).toEqual(0);
+        expect(methods.liftg(methods.mul)(1)(2)(4)(8)()).toEqual(64);
+    });
+});

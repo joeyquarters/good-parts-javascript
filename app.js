@@ -381,3 +381,23 @@ methods.addg = function (num) {
         return more;
     }
 };
+
+/**
+ * Takes a binary function and applies it to many invocations
+ * @param  {Function} binary The binary function
+ * @return {Function}        Number or undefined to apply binary with
+ */
+methods.liftg = function (binary) {
+    return function (first) {
+        if (first === undefined) {
+            return first;
+        }
+        return function more (next) {
+            if (next === undefined) {
+                return first;
+            }
+            first = binary(first, next);
+            return more;
+        };
+    };
+};
